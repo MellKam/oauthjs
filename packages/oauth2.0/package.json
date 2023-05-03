@@ -1,0 +1,19 @@
+{
+  "name": "@oauthjs/oauth2.0-client",
+  "scripts": {
+    "build": "_IS_NODE_=true vite build && _IS_NODE_=false vite build && tsc --emitDeclarationOnly --declaration"
+  },
+  "main": "dist/server.js",
+  "module": "dist/server.mjs",
+  "browser": {
+    "dist/server.js": "dist/browser.js",
+    "dist/server.mjs": "dist/browser.mjs"
+  },
+  "types": "dist/index.d.ts",
+  "devDependencies": {
+    "typescript": "5.0.4",
+    "@types/node": "18.16.3",
+    "vite": "4.3.4",
+    "@rollup/plugin-replace": "5.0.2"
+  }
+}
