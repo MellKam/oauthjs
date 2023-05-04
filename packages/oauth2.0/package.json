@@ -1,7 +1,7 @@
 {
   "name": "@oauthjs/oauth2.0-client",
   "scripts": {
-    "build": "_IS_NODE_=true vite build && _IS_NODE_=false vite build && tsc --emitDeclarationOnly --declaration"
+    "build": "rimraf dist/ && __IS_NODE__=true vite build && __IS_NODE__=false vite build && tsc --emitDeclarationOnly --declaration"
   },
   "main": "dist/server.js",
   "module": "dist/server.mjs",
@@ -12,8 +12,9 @@
   "types": "dist/index.d.ts",
   "devDependencies": {
     "typescript": "5.0.4",
+    "@mellkam/middleware": "0.2.2",
     "@types/node": "18.16.3",
     "vite": "4.3.4",
-    "@rollup/plugin-replace": "5.0.2"
+    "rimraf": "5.0.0"
   }
 }

@@ -1,26 +1,23 @@
 import { defineConfig } from "vite";
-import replace from "@rollup/plugin-replace";
 
-const isNode = process.env._IS_NODE_ === "true" ?? true;
+const __IS_NODE__ = process.env.__IS_NODE__ === "true" ?? true;
 
 export default defineConfig({
+  define: {
+    __IS_NODE__,
+  },
   build: {
     lib: {
       entry: "./src/index.ts",
       formats: ["es", "cjs"],
-      fileName: isNode ? "server" : "browser",
+      fileName: __IS_NODE__ ? "server" : "browser",
     },
     emptyOutDir: false,
-  },
-  plugins: [
-    {
-      ...replace({
-        '"_IS_NODE_"': isNode,
-        preventAssignment: true,
-        delimiters: ["", ""],
-      }),
-      enforce: "post",
-      apply: "build",
+    rollupOptions: {
+      external: ["node:crypto"],
     },
-  ],
+  },
+  optimizeDeps: {
+    exclude: ["node:crypto"],
+  },
 });
