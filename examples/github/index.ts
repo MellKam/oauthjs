@@ -26,7 +26,9 @@ app.get("/", (req, reply) => {
 
 app.get("/callback", async (req, reply) => {
   const url = new URL(req.protocol + "://" + req.hostname + req.url);
-  const token = await oauth.getToken(url, req.cookies.state);
+  const token = await oauth.getToken(url, {
+    state: req.cookies.state,
+  });
 
   return token;
 });
